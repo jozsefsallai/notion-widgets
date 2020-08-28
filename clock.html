@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      user-select: none;
+    }
+
+    .clock {
+      font-weight: 600;
+      font-size: 42px;
+    }
+
+    .date {
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock"></div>
+  <div class="date"></div>
+
+  <script>
+    const weekday = x => ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'][x];
+    const monthName = x => ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][x];
+
+    setInterval(function () {
+      const now = new Date();
+      const h = now.getHours().toString().padStart(2, '0');
+      const m = now.getMinutes().toString().padStart(2, '0');
+      const s = now.getSeconds().toString().padStart(2, '0');
+
+      const day = weekday(now.getDay());
+      const month = monthName(now.getMonth());
+      const date = now.getDate();
+      const year = now.getFullYear();
+
+      document.querySelector('.clock').innerHTML = `${h}:${m}:${s}`;
+      document.querySelector('.date').innerHTML = `${day}, ${month} ${date}, ${year}`;
+    }, 1000);
+  </script>
+</body>
+</html>
